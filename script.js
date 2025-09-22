@@ -1,9 +1,9 @@
-const box = document.querySelectorAll(".row");
+const box = document.querySelectorAll(".column");
 const inputContainer = document.querySelector(".gridInput");
-const button = document.querySelector("button");
+const button = document.querySelector(".grid");
 const website = document.querySelector("body")
+const buttonCollection = document.querySelector(".button");
 
-button.textContent = "Clear";
 document.querySelector(".gridInput label").remove();
 document.querySelector(".gridInput input").remove();
 
@@ -12,23 +12,31 @@ box.forEach((item) => item.addEventListener("mouseover", (e) => {
     }
 ))
 
+document.querySelector(".erase").addEventListener("click", () => {
+    box.forEach((item) => item.style.backgroundColor = "white");
+})
+
 button.addEventListener("click", (e) => {
-    if (e.target.innerText == "Clear") {
+    if (e.target.innerText == "Change Grid") {
         document.querySelector(".container").remove();
         inputContainer.innerHTML = '<label for="gridSize" type="number" min="16" max="100"><b>Input:</b> <i>n</i> (returns an n×n grid)</label>'
         inputContainer.innerHTML += '<input class="gridSize" type="number" max="100" min="16">'
         button.textContent = "Submit";
+        document.querySelector(".erase").remove();
     }
     else if (e.target.innerText == "Submit") {
         const input = document.querySelector(".gridInput input")
         if (input.value >= 16 && input.value <= 100) {
-            testing();
+            submission();
         }
         else {
             const label = inputContainer.querySelector("label");
             label.innerHTML = "<b>Invalid</b> <i>(Should be in-between 16 and 100)</i><br> <b>Input:</b> <i>n</i> (returns an n×n grid)"
 
         }
+    }
+    else if (e.target.innerText == "Erase") {
+        box.forEach((item) => item.style.backgroundColor = "white");
     }
 })
 
@@ -63,17 +71,27 @@ function gridCreator() {
 
 }
 
-function testing() {
+function submission() {
 
         gridCreator();
-        const box = document.querySelectorAll(".row");
+        const box = document.querySelectorAll(".column");
         box.forEach((item) => item.addEventListener("mouseover", (e) => {
             e.target.style.backgroundColor = "#69432D";
             }
         ))
         document.querySelector(".gridInput label").remove();
         document.querySelector(".gridInput input").remove();
-        button.textContent = "Clear";
+        button.textContent = "Change Grid";
+
+        const newEraser = document.createElement("button");
+        newEraser.className = "erase";
+        newEraser.textContent = "Erase";
+        buttonCollection.insertBefore(newEraser, button);
+
+        document.querySelector(".erase").addEventListener("click", () => {
+            box.forEach((item) => item.style.backgroundColor = "white");
+        })
+
 }
 
 
