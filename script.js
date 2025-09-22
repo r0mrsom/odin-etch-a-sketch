@@ -9,11 +9,15 @@ document.querySelector(".gridInput input").remove();
 
 box.forEach((item) => item.addEventListener("mouseover", (e) => {
     e.target.style.backgroundColor = "#69432D";
+    e.target.style.borderColor = "#69432D";
     }
 ))
 
 document.querySelector(".erase").addEventListener("click", () => {
-    box.forEach((item) => item.style.backgroundColor = "white");
+    box.forEach((item) => {
+        item.style.backgroundColor = "white";
+        item.style.borderColor = "lightgray";
+    });
 })
 
 button.addEventListener("click", (e) => {
@@ -77,6 +81,7 @@ function submission() {
         const box = document.querySelectorAll(".column");
         box.forEach((item) => item.addEventListener("mouseover", (e) => {
             e.target.style.backgroundColor = "#69432D";
+            e.target.style.borderColor = "#69432D";
             }
         ))
         document.querySelector(".gridInput label").remove();
@@ -89,7 +94,11 @@ function submission() {
         buttonCollection.insertBefore(newEraser, button);
 
         document.querySelector(".erase").addEventListener("click", () => {
-            box.forEach((item) => item.style.backgroundColor = "white");
+            box.forEach((item) => {
+                item.style.backgroundColor = "white";
+                item.style.borderColor = "lightgray"
+
+            });
         })
 
 }
